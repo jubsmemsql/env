@@ -1,0 +1,9 @@
+# Binaries
+go
+
+
+
+# Mac OSX Stuff
+.DS_Store
+.AppleDouble
+.LSOverride
