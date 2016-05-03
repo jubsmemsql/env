@@ -98,6 +98,9 @@ export LC_CTYPE=en_US.UTF-8
 ### Python VirtualEnv
 # source /usr/local/bin/virtualenvwrapper.sh
 
+### Added by setup-mac.sh for virtualenv
+# export PIP_REQUIRE_VIRTUALENV=true
+
 # Aliases
 source ~/env/aliases.sh
 
@@ -105,8 +108,3 @@ source ~/env/aliases.sh
 PROMPT_FANCY="\n\[\e[32;1m\](\[\e[37;1m\]\u\[\e[32;1m\])-(\[\e[37;1m\]jobs:\j\[\e[32;1m\])-(\[\e[37;1m\]\w\[\e[32;1m\])\n(\[\[\e[37;1m\]! \!\[\e[32;1m\])-> \[\e[0m\]"
 PROMPT_SIMPLE="\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ "
 export PS1="${PROMPT_SIMPLE}"
-
-
-### NVM - Node.js version manager
-# export NVM_DIR="$HOME/.nvm"
-# . "$(brew --prefix nvm)/nvm.sh"
