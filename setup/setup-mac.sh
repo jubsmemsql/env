@@ -1,38 +1,81 @@
 #!/usr/bin/env bash
+### Reference:
+# https://dotfiles.github.io/
+# https://bitbucket.org/j/dotfiles
+# https://github.com/christiannaths/dotfiles
+# https://github.com/dmytro/dotfiles
+# https://github.com/craigcitro/craigcitro-dotfiles
+
+# sudo chmod +x setup-mac.sh ## ./setup-mac.sh
 
 set -o errexit
 set -euf -o pipefail
 set -o nounset
 
-### Get Xcode
-xcode-select --install
+sudo -v
 
-### Get Homebrew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew update
+SETUP_HOME="$HOME/env/setup"
+
+export OS=`uname -s | sed -e 's/  */-/g;y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/'`
+if [ "$OS" = "darwin" ]; then
+    export ARCHFLAGS="-arch x86_64"
+else
+  echo 'ERROR: Not OSX!'
+  exit 1
+fi
+
+### Ensure setup is correct
+if [[ "$PWD" == $SETUP_HOME ]]; then
+  echo "Correct PWD and location for env dir"
+  cd ..
+else
+  echo "ERROR: Incorrect PWD or location for 'env' dir. Move 'env' dir to $HOME and cd to $HOME/env/setup to run setup-mac.sh"
+  exit 1
+fi
+
+### Setup bashrc and profile
+if ! egrep -q '/env/bash_profile.sh' "$HOME/.bash_profile"; then
+  echo "
+### Load bash_profile.sh
+source $HOME/env/bash_profile.sh
+
+# Load .bashrc if it exists
+test -f $HOME/.bashrc && source $HOME/.bashrc
+" >> $HOME/.bash_profile
+fi
+
+if ! egrep -q '/env/bashrc.sh' "$HOME/.bashrc"; then
+echo "
+### Load bashrc.sh
+source $HOME/env/bashrc.sh
+" >> $HOME/.bashrc
+fi
+
+
+### Install Xcode
+[ -z `xcode-select -p` ] && xcode-select --install
+
+### Install Homebrew
+[ ! -f /usr/local/bin/brew ] && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+alias brew="/usr/local/bin/brew"
+brew install caskroom/cask/brew-cask
 
 ### Basics
-brew install wget htop ssh-copy-id
+brew install vcprompt
+brew install grc
+brew install wget
+brew install htop
+brew install ssh-copy-id
 
 ### Development
-brew install git
 brew install mysql
 brew install awscli
 # brew install go
-
-### Git setup
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-
+# brew install tmux
 
 ### Bash completion
 brew install bash-completion
-brew tap homebrew/completions
-echo "
-### Added by setup-mac.sh for bash-completion
-if [ -f \$(brew --prefix)/etc/bash_completion ]; then
-  source \$(brew --prefix)/etc/bash_completion
-fi
-" >> ~/.bash_profile
+brew tap homebrew/completions # REQUIRES insert into bash_profile
 
 brew install brew-cask-completion
 brew install open-completion
@@ -41,31 +84,25 @@ brew install docker-compose-completion
 brew install docker-machine-completion
 # brew install vagrant-completion
 
-### Shell
-# brew install fish # https://fishshell.com/
-# brew install zsh
-
-### Setup NodeJS
-brew install nvm
-echo "
-### Added by setup-mac.sh for nvm
-export NVM_DIR=\"\$HOME/.nvm\"
-source \$(brew --prefix nvm)/nvm.sh
-" >> ~/.bashrc
-
-### Python
-# https://hackercodex.com/guide/python-development-environment-on-mac-osx/
-brew install python
-# brew install python3
-pip install virtualenv
-echo "
-### Added by setup-mac.sh for virtualenv
-export PIP_REQUIRE_VIRTUALENV=true
-" >> ~/.bashrc
-pip install virtualenvwrapper
-pip install fabric
-pip install pandas
+### Install Atom
+source $SETUP_HOME/atom-setup.sh
 
 ### Get software
-brew install caskroom/cask/brew-cask
-./install-software.sh
+source $SETUP_HOME/install-software.sh
+
+### Git setup
+source $SETUP_HOME/git-setup.sh
+
+### Setup NodeJS
+source $SETUP_HOME/node-setup.sh
+
+### Setup Python
+source $SETUP_HOME/python-setup.sh
+
+### Shell
+source $SETUP_HOME/shell-setup.sh
+
+
+brew update
+brew cleanup
+brew doctor

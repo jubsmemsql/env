@@ -26,3 +26,6 @@ function docker-clean() {
 }
 alias drm="docker rm"
 alias dps="docker ps"
+
+# Xcode
+alias ios="open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app"
