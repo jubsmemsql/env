@@ -9,5 +9,6 @@ pip install virtualenv
 pip install fabric
 pip install pandas
 pip install flake8
+pip install flake8-docstrings
 
 apm install linter-flake8

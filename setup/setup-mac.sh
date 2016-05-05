@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 ### Reference:
+# http://sourabhbajaj.com/mac-setup/index.html
 # https://dotfiles.github.io/
 # https://bitbucket.org/j/dotfiles
 # https://github.com/christiannaths/dotfiles
