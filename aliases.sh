@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Misc
+alias sqlpad="$HOME/.nvm/versions/node/v6.0.0/bin/sqlpad --dir $HOME/code/sqlpad/ --port 3000 --passphrase secret-encryption-phrase"
+
 # Basic
 alias ls="ls -Gp"
 alias ll="ls -lh"

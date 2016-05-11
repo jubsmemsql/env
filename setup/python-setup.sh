@@ -7,7 +7,6 @@ brew install python
 pip install virtualenv
 # pip install virtualenvwrapper
 pip install fabric
-pip install pandas
 pip install flake8
 pip install flake8-docstrings
 
