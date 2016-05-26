@@ -6,6 +6,7 @@
 # https://github.com/christiannaths/dotfiles
 # https://github.com/dmytro/dotfiles
 # https://github.com/craigcitro/craigcitro-dotfiles
+# http://sourabhbajaj.com/mac-setup/index.html
 
 # sudo chmod +x setup-mac.sh ## ./setup-mac.sh
 
