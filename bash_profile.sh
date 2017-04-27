@@ -3,7 +3,7 @@
 #######################################
 ### PATH
 #######################################
-CUSTOM_PATH="~/env/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin"
+CUSTOM_PATH="~/env/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin"
 PATH="$CUSTOM_PATH"
 # if [ -x /usr/libexec/path_helper ]; then
 #         eval `/usr/libexec/path_helper -s`

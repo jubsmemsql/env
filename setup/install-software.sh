@@ -28,7 +28,8 @@ brew cask install mapbox-studio
 brew cask install transmission
 
 ### Text editors
-brew cask install atom && ~/env/setup/atom-setup.sh
+brew cask install visual-studio-code && ~/env/setup/vscode-setup.sh
+# brew cask install atom && ~/env/setup/atom-setup.sh
 # brew cask install sublime-text
 # brew cask install aquamacs
 # brew cask install macvim

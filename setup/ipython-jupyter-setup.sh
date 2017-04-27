@@ -8,18 +8,29 @@ pip install tornado
 
 pip install jupyter
 
+pip3 install ipykernel
 ### Data
 brew install gfortran # for scipy
-pip install numpy
-pip install scipy
-pip install pandas
+pip2 install numpy
+pip2 install scipy
+pip2 install pandas
+
+pip3 install numpy
+pip3 install scipy
+pip3 install pandas
+
+pip3 install ipykernel
 
 ### Plotting
 # brew install freetype
 brew install pkg-config
-pip install matplotlib # http://matplotlib.org/1.5.0/users/installing.html
-pip install pylab
-pip install seaborn
+pip2 install matplotlib # http://matplotlib.org/1.5.0/users/installing.html
+pip2 install pylab
+pip2 install seaborn
+
+pip3 install matplotlib # http://matplotlib.org/1.5.0/users/installing.html
+pip3 install pylab
+pip3 install seaborn
 
 # https://github.com/matplotlib/matplotlib/issues/5624/
 

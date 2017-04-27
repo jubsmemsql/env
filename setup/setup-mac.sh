@@ -68,11 +68,12 @@ brew install grc
 brew install wget
 brew install htop
 brew install ssh-copy-id
+brew install dstat
 
 ### Development
 brew install mysql
 brew install awscli
-# brew install go
+brew install go
 # brew install tmux
 
 ### Bash completion
