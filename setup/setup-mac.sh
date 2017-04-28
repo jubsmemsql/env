@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 ### Reference:
+# https://github.com/MoOx/setup
 # http://sourabhbajaj.com/mac-setup/index.html
 # https://dotfiles.github.io/
 # https://bitbucket.org/j/dotfiles
@@ -8,6 +9,7 @@
 # https://github.com/craigcitro/craigcitro-dotfiles
 # http://sourabhbajaj.com/mac-setup/index.html
 
+### Initial setup
 # sudo chmod +x setup-mac.sh ## ./setup-mac.sh
 
 set -o errexit
@@ -15,6 +17,23 @@ set -euf -o pipefail
 set -o nounset
 
 sudo -v
+=======
+ENV_DIR=~/env
+echo $ENV_DIR
+
+if [[ -a $ENV_DIR ]]; then
+  echo “Env is setup already”
+  exit 1
+else
+  echo “Creating env…”
+  mkdir $ENV_DIR
+  sudo chmod +x aliases.sh bashrc.sh bash_profile.sh install-software.sh
+  cp aliases.sh bashrc.sh setup-mac.sh bash_profile.sh install-software.sh $ENV_DIR
+  cd $ENV_DIR
+fi
+
+### Get Xcode
+xcode-select --install
 
 SETUP_HOME="$HOME/env/setup"
 
@@ -109,3 +128,10 @@ source $SETUP_HOME/shell-setup.sh
 brew update
 brew cleanup
 brew doctor
+
+### Get software
+brew install caskroom/cask/brew-cask
+./install-software.sh
+
+# Turn of executability from setup-mac.sh
+sudo chmod -x $ENV_DIR/setup-mac.sh
